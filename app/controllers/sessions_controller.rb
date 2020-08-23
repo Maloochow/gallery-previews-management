@@ -1,0 +1,42 @@
+class SessionsController < ApplicationController
+
+  def new
+    @user = User.new
+    render :login    
+  end
+  
+  def create
+    @user = User.find_by_email(user_params[:email])
+    if @user && @user.authenticate(user_params[:password])
+      session[:user_id] = @user.id
+      session[:gallery_id] = @user.gallery.id
+      redirect_to user_path(@user)
+    else
+      flash[:alert] = "User email not exist or the password is invalid. Please try again"
+      @user = User.new
+      render :login 
+    end
+  end
+  
+  def google_login
+    user = User.find_or_create_from_omniauth(user_info)
+    session[:user_id] = user.id
+    redirect_to user_path(user)
+  end
+
+  def destroy
+    session.clear
+    redirect_to welcome_path 
+  end
+
+  private
+
+  def user_info
+    request.env['omniauth.auth'][:info]
+  end
+
+  def user_params
+    params.require("user").permit(:email, :password)
+  end
+
+end

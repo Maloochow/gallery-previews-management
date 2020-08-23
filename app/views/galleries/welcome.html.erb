@@ -1,0 +1,6 @@
+<h1>Enter the gallery name:</h1>
+<%= form_for @gallery, url: {controller: "galleries", action: "login"} do |f| %>
+    <%= f.text_field :name %>
+<% end %>
+<br>
+<h3><%= link_to "Create a New Gallery", new_gallery_path %></h3>
