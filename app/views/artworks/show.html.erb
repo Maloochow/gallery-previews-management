@@ -24,11 +24,11 @@
     </tr>
     <tr>
     <th>Available:</th>
-        <th><%= check_box_tag(:availability, @artwork.availability ? 1 : 0 ) %></th>
+        <th><%= @artwork.availability ? "yes" : "no" %></th>
     </tr>
     <tr>
     <th>Commissioned:</th>
-        <th><%= check_box_tag(:commission, @artwork.commission ? 1 : 0 ) %></th>
+        <th><%= @artwork.commission ? "yes" : "no" %></th>
     </tr>
 
     <tr>

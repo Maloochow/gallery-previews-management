@@ -14,8 +14,8 @@
         <%= link_to work.title, gallery_artwork_path(current_gallery, work) %>
         </th>
         <th><%= work.artist %></th>
-        <th><%= check_box_tag(:availability, work.availability ? 1 : 0 ) %></th>
-        <th><%= check_box_tag(:commission, work.commission ? 1 : 0 ) %></th>
+        <th><%= work.availability ? "yes" : "no" %></th>
+        <th><%= work.commission ? "yes" : "no" %></th>
         <th><%= edit_artwork(work) %><br>
         <%= delete_artwork(work) %></th>
     </tr>
