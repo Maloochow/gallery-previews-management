@@ -15,12 +15,11 @@ class UsersController < ApplicationController
     end
 
     def create 
+        @user = User.new(user_info)
         if user_params[:password] != user_params[:password_confirmation]
             flash[:alert] = "password confirmation has to be the same as password"
-            render :new && return
-        end
-        @user = User.new(user_info)
-        if @user.save
+            render :new
+        elsif @user.save
         session[:user_id] = @user.id
         redirect_to user_path(@user)
         else
