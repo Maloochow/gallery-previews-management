@@ -1,0 +1,11 @@
+<h3>Create a Client</h3>
+
+<br>
+<%= form_for([current_gallery, @client]) do |f| %>
+    <%= f.hidden_field :gallery_id, value: current_gallery.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :status, value: 1 %>
+    <%= f.label "Client's APP ID:" %>
+    <%= f.text_field :app_id %>
+    <%= f.submit %>
+<% end %>

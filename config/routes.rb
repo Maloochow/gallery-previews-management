@@ -1,16 +1,29 @@
 Rails.application.routes.draw do
   match '/auth/:provider/callback', to: 'sessions#google_login', via: [:get, :post]
-  get '/welcome', to: 'galleries#welcome'
-  post '/welcome', to: 'galleries#login'
-  resources :galleries, only: [:new, :create, :show, :edit, :update, :destroy] do
-    resources :artworks
-    resources :clients
-    resources :users, only: [:index, :new, :create]
-    resources :sessions, only: [:new, :create]
-  end
-  resources :sessions, only: :destroy
-  resources :users, only: [:show, :edit, :update, :destroy]
 
+  get '/login', to: 'sessions#new', as: "login"
+  post '/login', to: 'sessions#create'
+
+  get '/signup', to: 'users#new', as: 'signup'
+  post '/signup', to: 'users#create'
+  get '/users/:id', to: 'users#pre_gallery', as: 'user'
+
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
+
+  resources :users, only: [:edit, :update, :destroy] do
+    resources :galleries, only: :create
+  end
+
+  # get '/users/user_id/galleries/new', to: 'galleries#new', as: 'new_gallery'
+  # post '/users/:user_id/galleries/new', to: 'galleries#create'
+
+  resources :galleries, only: [:show, :edit, :update, :destroy] do
+    resources :artworks
+    resources :clients, only: [:new, :create, :index, :show]
+    resources :client_invites, only: [:edit, :update, :destroy]
+    resources :user_invites, only: [:new, :create, :destroy]
+    resources :users, only: [:index, :show]
+  end
   
   root 'application#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

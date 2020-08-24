@@ -1,0 +1,39 @@
+<%= render partial: 'galleries/nav' %>
+
+<h3><%= @artwork.title %></h3>
+<%= edit_link(@artwork) %><br>
+<%= delete_link(@artwork) %>
+
+<table>
+<tbody>
+    <tr>
+    <th>Artist Name:</th>
+    <th><%= @artwork.artist %></th>
+    </tr>
+    <tr>
+    <th>Edition:</th>
+    <th><%= @artwork.edition %></th>
+    </tr>
+    <tr>
+    <th>Year:</th>
+    <th><%= @artwork.year %></th>
+    </tr>
+    <tr>
+    <th>Medium:</th>
+    <th><%= @artwork.medium %></th>
+    </tr>
+    <tr>
+    <th>Available:</th>
+    <th><%= check_box(@artwork.availability) %></th>
+    </tr>
+    <tr>
+    <th>Commissioned:</th>
+    <th><%= check_box(@artwork.commission) %></th>
+    </tr>
+    <tr>
+    <th>Description:</th>
+    <th><%= @artwork.description %></th>
+    </tr>
+
+</tbody>
+</table>

@@ -1,0 +1,28 @@
+<% if artworks != [] %>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Artist Name</th>
+        <th>Available</th>
+        <th>Commissioned</th>
+        <th></th>
+    </tr>
+<tbody>
+    <% artworks.each do |work| %>
+    <tr>
+        <th>
+        <%= link_to work.title, gallery_artwork_path(current_gallery, work) %>
+        </th>
+        <th><%= work.artist %></th>
+        <th><%= check_box(work.availability) %></th>
+        <th><%= check_box(work.commission) %></th>
+        <th><%= edit_link(work) %><br>
+        <%= delete_link(work) %></th>
+    </tr>
+    <% end %>
+</tbody>
+</table>
+<% else %>
+<h3>There is no artwork at the moment.</h3>
+
+<% end %>

@@ -1,0 +1,17 @@
+<%= render partial: 'galleries/nav' %>
+
+<h3><%= link_to "Artworks", gallery_artworks_path(current_gallery) %></h3>
+<%= form_tag(gallery_artworks_path(current_gallery), method: "get") do %>
+  <%= text_field_tag :search, nil,  id: "Search" %>
+  <%= submit_tag "Search"%>
+<% end %>
+<%= form_tag(gallery_artworks_path(current_gallery), method: "get") do %>
+  <%= label_tag :artist, "Filter by Artist" %>
+  <%= select_tag :artist, options_for_select(current_gallery.artworks.map {|artwork| artwork.artist }.uniq) %>
+  <%= submit_tag "Search"%>
+<% end %>
+<br>
+<%= link_to "Add Artwork", new_gallery_artwork_path(current_gallery) %>
+<br>
+
+<%= render partial: 'artworks_table', locals: {artworks: @artworks} %>

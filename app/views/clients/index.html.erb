@@ -1,0 +1,28 @@
+<%= render partial: 'galleries/nav' %>
+
+<h3><%= link_to "Clients", gallery_clients_path(current_gallery) %></h3>
+
+<%= form_tag(gallery_clients_path(current_gallery), method: "get") do %>
+  <%= text_field_tag :search, nil, id: "Search" %>
+  <%= submit_tag "Search"%>
+<% end %>
+
+<br>
+<%= link_to "Add Client", new_gallery_client_path(current_gallery) %>
+<br>
+
+<% if @clients != [] %>
+<table>
+    <tr>
+        <th>App ID</th>
+        <th>Invited By</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    <tbody>
+    <%= render partial: 'client', collection: @clients %>
+    </tbody>
+</table>
+<% else %>
+    <h3>There is no client at the moment.</h3>
+<% end %>

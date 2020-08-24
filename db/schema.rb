@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_043146) do
+ActiveRecord::Schema.define(version: 2020_08_23_175333) do
 
   create_table "artworks", force: :cascade do |t|
     t.string "title"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_08_23_043146) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "gallery_id"
   end
 
 end

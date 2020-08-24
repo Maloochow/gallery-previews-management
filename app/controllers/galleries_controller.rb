@@ -1,54 +1,67 @@
 class GalleriesController < ApplicationController
-
-    def welcome
-        @gallery = Gallery.new
-    end
-
-    def login
-        gallery = Gallery.find_by(gallery_params)
-        if gallery
-            redirect_to new_gallery_session(gallery)
-        else
-            flash[:alert] = "Gallery does not exist yet. Please create one."
-            redirect_to new_gallery_path
-        end
-    end
-
-    def new
-        @gallery = Gallery.new
-    end
+    before_action :gallery_authorized?, except: :create
 
     def create
-        gallery = Gallery.find_by(gallery_params)
-        if gallery
-            flash[:alert] = "gallery already exist, please login or use a different name"
-            redirect_to welcome_path
+        @gallery = Gallery.new(gallery_params)
+        if @gallery.save
+            @gallery.users << current_user
+            @gallery.admin_user_id = @user.id
+            @gallery.save
+            session[:gallery_id] = @gallery.id
+            redirect_to gallery_path(@gallery)
         else
-            gallery = Gallery.create(gallery_params)
-            redirect_to new_gallery_user(gallery)
+            flash.now[:alert] = "Gallery already exist. Please contact the gallery or user a different name."
+            current_user
+            render :'users/show'
         end
     end
 
     def edit
-
+        if !gallery_admin?
+            redirect_to gallery_path(current_gallery)
+        end
     end
 
     def update
-
+        if !gallery_admin?
+            redirect_to gallery_path(current_gallery)
+        else
+            if @gallery.update(gallery_params)
+                redirect_to gallery_path(current_gallery)
+            else
+                flash[:alert] = "Name has to be unique"
+                render :edit
+            end
+        end      
     end
 
     def show
-
     end
 
     def destroy
-
+        if !gallery_admin?
+            redirect_to gallery_path(current_gallery)
+        else
+            current_gallery.destroy
+            redirect_to user_path(current_user)
+        end
     end
 
 
     private
 
     def gallery_params
-        params.require("gallery").permit(:name)
+        params.require("gallery").permit(:name, :admin_user_id)
     end
+
+    def gallery_authorized?
+        show_gallery = Gallery.find_by_id(params[:id])
+        if show_gallery == current_user.gallery && show_gallery == current_gallery
+            true
+        else
+            session.clear
+            redirect_to login_path and return
+        end
+    end
+
 end

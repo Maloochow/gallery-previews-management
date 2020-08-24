@@ -1,0 +1,11 @@
+<h3>Edit <%= current_gallery.name %></h3>
+
+<%= form_for @gallery do |f| %>
+    <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %></div>
+    <div>
+    <%= f.label "Assign Admin User" %>
+    <%= f.select :admin_user_id, options_from_collection_for_select(@gallery.users, :id, :username) %></div>
+    <%= f.submit %>
+<% end %>

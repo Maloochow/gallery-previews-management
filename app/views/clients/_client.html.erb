@@ -1,0 +1,9 @@
+    <tr>
+        <th>
+        <%= link_to client.app_id, gallery_client_path(current_gallery, client) %>
+        </th>
+        <th><%= client.user_name(current_gallery) %></th>
+        <th><%= client.status(current_gallery) %></th>
+        <th><%= edit_link(client) %><br>
+        <%= delete_link(client) %></th>
+    </tr>

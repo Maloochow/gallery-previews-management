@@ -1,0 +1,17 @@
+<h1>Please Login</h1>
+
+<%= form_for @user, url: login_path do |f| %>
+    <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    </div>
+    <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    </div>
+    <%= f.submit "Login"%>  
+<% end %>
+
+<button><%= link_to 'Signing in with Google Account', "/auth/google_oauth2" %></button>
+
+<button><%= link_to 'Create Account with Email', signup_path %></button>

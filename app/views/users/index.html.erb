@@ -1,0 +1,30 @@
+<%= render partial: 'galleries/nav' %>
+<h3>Admin User:</h3>
+<%= current_gallery.admin_name %>
+<br>
+<%= link_to "Invite a User", new_gallery_user_invite_path(current_gallery) %>
+<h3>Users</h3>
+<%= form_tag(gallery_users_path(current_gallery), method: "get") do %>
+  <%= text_field_tag :search, nil,  id: "Search", placeholder: "search by username" %>
+
+  <%= submit_tag "Search"%>
+<% end %>
+<br>
+
+<% @users.each do |user| %>
+    <div>
+    <%= link_to user.username, gallery_user_path(current_gallery, user) %>
+    </div>
+<% end %>
+
+<% if current_gallery.user_invites != [] %>
+  <h3>Invitations:</h3>
+  <ul>
+    <% current_gallery.user_invites.each do |invite| %>
+    <li>
+      <%= invite.new_user_email %><br>
+      <%= link_to "cancel", gallery_user_invite_path(current_gallery, invite), method: 'DELETE' if edit_authorized?(invite) %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>

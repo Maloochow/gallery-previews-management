@@ -1,5 +1,8 @@
-<h1>Create an Account</h1>
-<%= form_for @user, url: signup_path do |f| %>
+<%= render partial: 'galleries/nav' %>
+
+<h3>Edit <%= @user.username %></h3>
+
+<%= form_for @user, url: user_path(@user), method: "PATCH" do |f| %>
     <div>
     <%= f.label :username %>
     <%= f.text_field :username %><br>
@@ -10,11 +13,7 @@
     </div>
     <div>
     <%= f.label :password %>
-    <%= f.password_field :password %><br>
-    </div>
-    <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password, required: true%><br>
     </div>
     <%= f.submit %>
 <% end %>

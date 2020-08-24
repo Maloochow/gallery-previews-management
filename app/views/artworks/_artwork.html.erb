@@ -1,0 +1,28 @@
+<%= form_for([current_gallery, artwork]) do |f| %>
+    <%= f.hidden_field :gallery_id, value: current_gallery.id  %>
+    <div>
+    <%= f.label :title %>
+    <%= f.text_field :title, :required => true %></div>
+    <div>
+    <%= f.label :artist %>
+    <%= f.text_field :artist, :required => true %></div>
+    <div>
+    <%= f.label :edition %>
+    <%= f.text_field :edition %></div>
+    <div>
+    <%= f.label :year %>
+    <%= f.number_field :year %></div>
+    <div>
+    <%= f.label :medium %>
+    <%= f.text_field :medium %></div>
+    <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %></div>
+    <div>
+    <%= f.label :availability %>
+    <%= f.check_box :availability %></div>
+    <div>
+    <%= f.label :commission %>
+    <%= f.check_box :commission %></div>
+    <%= f.submit %>
+<% end %>

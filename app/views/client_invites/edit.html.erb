@@ -1,0 +1,7 @@
+<h3>Edit <%= @invite.app_id %></h3>
+
+<%= form_for([current_gallery, @invite]) do |f| %>
+    <%= f.label "Update client status:" %>
+    <%= f.check_box "status", "#{@invite.status ? true : false}", @invite.status ? true : false %>
+    <%= f.submit %>
+<% end %>
