@@ -3,6 +3,6 @@
 <%= link_to "Users", gallery_users_path(current_gallery) %>
 <%= link_to "Artworks", gallery_artworks_path(current_gallery) %>
 <%= link_to "Clients", gallery_clients_path(current_gallery) %>
-<%= link_to "Logout", logout_path %>
+<%= link_to "Logout", logout_path, method: "DELETE" %>
 </nav>
 <br>

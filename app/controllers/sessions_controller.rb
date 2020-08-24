@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
       redirect_to user_path(@user)
     else
       flash.now[:alert] = "User email not exist or the password is invalid. Please try again"
+      @user = User.new
       render :new
     end
   end
@@ -23,7 +24,7 @@ class SessionsController < ApplicationController
   def google_login
     user = User.find_or_create_from_omniauth(user_info)
     session[:user_id] = user.id
-    session[:gallery_id] = @user.gallery.id if @user.gallery
+    session[:gallery_id] = user.gallery.id if user.gallery
     redirect_to user_path(user)
   end
 

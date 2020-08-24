@@ -1,9 +1,10 @@
 <h1>Welcome <%= @user.username %></h1>
+<%= link_to "Logout", logout_path, method: "DELETE" %>
 
 <% if @user.invites != [] %>
   <h3>Existing Invites:</h3>
   <% @user.invites.each do |invite| %>
-    <%= link_to invite.gallery_name, gallery_path(invite.gallery) %>
+    <%= link_to invite.gallery_name, enter_gallery_path(invite.gallery) %>
   <% end %>
 <% else %>
   <h3>You are not associated with any galleries at the moemnt.</h3>

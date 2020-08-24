@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :show_user, :current_gallery, :show_gallery, :authorized?, :edit_authorized?, :gallery_admin?
+    helper_method :current_user, :show_user, :current_gallery, :show_gallery, :authorized?, :edit_authorized?, :gallery_admin?, :show_on_gallery
 
     def current_user
         @user ||= User.find_by_id(session[:user_id])
@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
 
     def show_gallery
         @show_gallery ||= Gallery.find_by_id(params[:gallery_id])
+    end
+
+    def show_on_gallery
+        @show_gallery ||= Gallery.find_by_id(params[:id])
     end
 
     def authorized?

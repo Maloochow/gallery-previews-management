@@ -1,8 +1,8 @@
 <%= render partial: 'galleries/nav' %>
 
 <h3><%= @artwork.title %></h3>
-<%= edit_link(@artwork) %><br>
-<%= delete_link(@artwork) %>
+<%= edit_artwork(@artwork) %><br>
+<%= delete_artwork(@artwork) %>
 
 <table>
 <tbody>
@@ -24,12 +24,13 @@
     </tr>
     <tr>
     <th>Available:</th>
-    <th><%= check_box(@artwork.availability) %></th>
+        <th><%= check_box_tag(:availability, @artwork.availability ? 1 : 0 ) %></th>
     </tr>
     <tr>
     <th>Commissioned:</th>
-    <th><%= check_box(@artwork.commission) %></th>
+        <th><%= check_box_tag(:commission, @artwork.commission ? 1 : 0 ) %></th>
     </tr>
+
     <tr>
     <th>Description:</th>
     <th><%= @artwork.description %></th>

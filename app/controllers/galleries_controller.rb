@@ -8,6 +8,7 @@ class GalleriesController < ApplicationController
             @gallery.admin_user_id = @user.id
             @gallery.save
             session[:gallery_id] = @gallery.id
+            UserInvite.where(new_user_email: current_user.email).destroy_all
             redirect_to gallery_path(@gallery)
         else
             flash.now[:alert] = "Gallery already exist. Please contact the gallery or user a different name."
@@ -55,8 +56,7 @@ class GalleriesController < ApplicationController
     end
 
     def gallery_authorized?
-        show_gallery = Gallery.find_by_id(params[:id])
-        if show_gallery == current_user.gallery && show_gallery == current_gallery
+        if show_on_gallery == current_user.gallery && show_on_gallery == current_gallery
             true
         else
             session.clear

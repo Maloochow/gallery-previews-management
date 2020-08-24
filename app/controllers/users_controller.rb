@@ -64,11 +64,12 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        if gallery_admin? && show_user.gallery == current_gallery
+        if gallery_admin? && show_user.gallery == current_gallery && show_user != current_gallery.admin
             show_user.gallery_id = nil
             show_user.save
             redirect_to gallery_users_path(current_gallery)
         else
+            flash[:alert] = "Operation is prohibited"
             redirect_to gallery_user_path(current_gallery, show_user)
         end
     end

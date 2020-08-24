@@ -23,7 +23,6 @@ class ClientsController < ApplicationController
         if @client.save
             invite = @client.client_invites.build(client_id: @client.id)
             invite.update(invite_params)
-            binding.pry
             invite.save
             redirect_to gallery_clients_path(current_gallery)
         else

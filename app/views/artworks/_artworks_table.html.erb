@@ -14,10 +14,10 @@
         <%= link_to work.title, gallery_artwork_path(current_gallery, work) %>
         </th>
         <th><%= work.artist %></th>
-        <th><%= check_box(work.availability) %></th>
-        <th><%= check_box(work.commission) %></th>
-        <th><%= edit_link(work) %><br>
-        <%= delete_link(work) %></th>
+        <th><%= check_box_tag(:availability, work.availability ? 1 : 0 ) %></th>
+        <th><%= check_box_tag(:commission, work.commission ? 1 : 0 ) %></th>
+        <th><%= edit_artwork(work) %><br>
+        <%= delete_artwork(work) %></th>
     </tr>
     <% end %>
 </tbody>
