@@ -14,8 +14,8 @@
         <%= link_to work.title, gallery_artwork_path(current_gallery, work) %>
         </th>
         <th><%= work.artist %></th>
-        <th><%= work.availability ? "yes" : "no" %></th>
-        <th><%= work.commission ? "yes" : "no" %></th>
+        <th><i class="material-icons"><%= work.availability ? "check" : "clear"%></i></th>
+        <th><i class="material-icons"><%= work.commission ? "check" : "clear"%></i></th>
         <th><%= edit_artwork(work) %><br>
         <%= delete_artwork(work) %></th>
     </tr>

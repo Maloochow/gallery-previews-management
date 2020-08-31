@@ -1,8 +1,9 @@
-<%= render partial: 'galleries/nav' %>
+
 
 <h3><%= show_user.username %></h3>
-
-<%= show_user.email %>
-
+  <div class="row">
+<%= render partial: 'galleries/user' %>
+      <div class="col s9">
 <%= link_to "Edit", edit_user_path(show_user) if current_user == show_user %>
 <%= link_to "Remove", user_path(show_user), method: "DELETE" if gallery_admin? %>
+</div>

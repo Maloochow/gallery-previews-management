@@ -5,16 +5,28 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
 
-  <body>
 
+  <body>
+<% if current_gallery %>
+<%= render partial: 'galleries/nav' %>
+<% else %>
+<%= render partial: 'users/nav' %>
+<% end %>
+  
   <% if flash[:alert] %>
     <div class="notice"><%= flash[:alert] %></div>
   <% end %>
-  
+
+    <div class = "container">
     <%= yield %>
+    </div>
+
   </body>
 </html>

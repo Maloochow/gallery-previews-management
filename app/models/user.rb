@@ -1,8 +1,11 @@
 class User < ApplicationRecord
     belongs_to :gallery, optional: true
     has_many :client_invites
+    has_many :clients, through: :client_invites
     has_many :user_invites
     has_secure_password
+    has_one_attached :photo
+
     validates :email, presence: true, uniqueness: {case_sensitive: false}
 
 
@@ -18,5 +21,10 @@ class User < ApplicationRecord
 
     def invites
         UserInvite.where(new_user_email: self.email)
+    end
+
+    def gallery_clients
+        invites = self.client_invites.where(gallery: self.gallery)
+        invites.map {|invite| invite.client }
     end
 end

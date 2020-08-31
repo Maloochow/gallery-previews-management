@@ -1,14 +1,16 @@
-<%= render partial: 'galleries/nav' %>
+
 
 <h3><%= link_to "Clients", gallery_clients_path(current_gallery) %></h3>
 
+<div class="input-field col s6">
 <%= form_tag(gallery_clients_path(current_gallery), method: "get") do %>
-  <%= text_field_tag :search, nil, id: "Search" %>
-  <%= submit_tag "Search"%>
+    <i class="material-icons prefix">search</i>
+    <input type="search" id="search", class="validate", placeholder="Search by App ID">
 <% end %>
+</div>
 
+<a class="waves-effect waves-light btn" href="<%= new_gallery_client_path(current_gallery) %>"><i class="material-icons right">add</i>Add Client</a>
 <br>
-<%= link_to "Add Client", new_gallery_client_path(current_gallery) %>
 <br>
 
 <% if @clients != [] %>

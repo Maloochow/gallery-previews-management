@@ -1,8 +1,19 @@
-<p><h1><%= current_user.username %>'s Dashboard at <%= current_gallery.name %></h1><%= link_to "(edit)", edit_gallery_path(current_gallery) if gallery_admin? %></p>
-<nav>
-<%= link_to "Users", gallery_users_path(current_gallery) %>
-<%= link_to "Artworks", gallery_artworks_path(current_gallery) %>
-<%= link_to "Clients", gallery_clients_path(current_gallery) %>
-<%= link_to "Logout", logout_path, method: "DELETE" %>
+<nav class="indigo darken-3">
+<div class="container">
+<div class="nav-wrapper">
+<a href="/galleries/<%=current_gallery.id%>" class="brand-logo center"><%= current_gallery.name %></a>
+<ul id="nav-mobile" class="left hide-on-med-and-down">
+    <li><%= link_to "(edit)", edit_gallery_path(current_gallery) if gallery_admin? %></li>
+</ul>
+<ul id="nav-mobile" class="right hide-on-med-and-down">
+    <li><%= link_to "Users", gallery_users_path(current_gallery) %></li>
+    <li><%= link_to "Artworks", gallery_artworks_path(current_gallery) %></li>
+    <li><%= link_to "Clients", gallery_clients_path(current_gallery) %></li>
+    <li><%#= link_to "Logout", logout_path, method: :post %>
+    <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
+    <input type=submit value='logout'>
+    <% end %></li>
+</ul>
+</div>
+</div>
 </nav>
-<br>

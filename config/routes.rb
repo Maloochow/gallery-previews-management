@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/users/:id', to: 'users#pre_gallery', as: 'user'
 
-  delete '/logout', to: 'sessions#destroy', as: 'logout'
+  post '/logout', to: 'sessions#destroy', as: 'logout'
 
   resources :users, only: [:edit, :update, :destroy] do
     resources :galleries, only: :create

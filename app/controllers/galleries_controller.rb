@@ -1,5 +1,6 @@
 class GalleriesController < ApplicationController
     before_action :gallery_authorized?, except: :create
+    # layout 'gallery_nav'
 
     def create
         @gallery = Gallery.new(gallery_params)

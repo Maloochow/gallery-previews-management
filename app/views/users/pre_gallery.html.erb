@@ -1,5 +1,5 @@
 <h1>Welcome <%= @user.username %></h1>
-<%= link_to "Logout", logout_path, method: "DELETE" %>
+<%= link_to "Logout", logout_path, method: "post" %>
 
 <% if @user.invites != [] %>
   <h3>Existing Invites:</h3>

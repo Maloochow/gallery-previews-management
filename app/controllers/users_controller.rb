@@ -16,11 +16,13 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.new(user_info)
+        # @user.profile_photo.attach(user_params[:profile_photo])
         if user_params[:password] != user_params[:password_confirmation]
             flash[:alert] = "password confirmation has to be the same as password"
             render :new
         elsif @user.save
-        session[:user_id] = @user.id
+            session[:user_id] = @user.id
+            binding.pry
         redirect_to user_path(@user)
         else
             flash[:alert] = "Email already exist, please login or use a different email"
@@ -43,6 +45,7 @@ class UsersController < ApplicationController
             redirect_to gallery_users_path(current_gallery)
         else
             if @user.update(user_info)
+                # @user.avatar.attach(params["avatar"])
                 redirect_to gallery_user_path(current_gallery, @user)
             else
                 render :edit
@@ -76,13 +79,15 @@ class UsersController < ApplicationController
 private
 
     def user_params
-        params.require("user").permit(:username, :email, :password, :password_confirmation)
+        params.require("user").permit(:username, :email, :password, :password_confirmation, :photo)
     end
 
     def user_info
         {username: user_params[:username],
         email: user_params[:email],
-        password: user_params[:password]}
+        password: user_params[:password],
+        photo: user_params[:photo]
+        }
     end
 
 

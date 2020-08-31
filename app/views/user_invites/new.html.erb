@@ -1,8 +1,13 @@
-<%= render partial: 'galleries/nav' %>
-
+<br>
+<div class="container">
 <%= form_for @user_invite, url: gallery_user_invites_path(current_gallery) do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id  %>
     <%= f.label :new_user_email, "New User:" %>
     <%= f.email_field :new_user_email, placeholder: "enter new user's email" %>
-    <%= f.submit %>
+<br>
+<br>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
 <% end %>
+</div>

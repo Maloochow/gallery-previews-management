@@ -1,4 +1,4 @@
-<%= render partial: 'galleries/nav' %>
+
 
 <h3>Edit <%= @user.username %></h3>
 
@@ -15,5 +15,15 @@
     <%= f.label :password %>
     <%= f.password_field :password, required: true%><br>
     </div>
-    <%= f.submit %>
+    <div class="file-field input-field">
+    <div class="btn"><i class="material-icons right">insert_photo</i>
+    <span>Update Profile</span>
+        <%= f.file_field :photo, direct_upload: true %>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" name="user[profile_photo]" accept="image/png, image/jpeg" >
+      </div>
+    </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Update<i class="material-icons right">send</i>
+  </button> 
 <% end %>

@@ -1,14 +1,17 @@
-<%= render partial: 'galleries/nav' %>
-<h3>Admin User:</h3>
-<%= current_gallery.admin_name %>
-<br>
-<%= link_to "Invite a User", new_gallery_user_invite_path(current_gallery) %>
-<h3>Users</h3>
-<%= form_tag(gallery_users_path(current_gallery), method: "get") do %>
-  <%= text_field_tag :search, nil,  id: "Search", placeholder: "search by username" %>
+  <div class="row">
+<%= render partial: 'galleries/user' %>
 
-  <%= submit_tag "Search"%>
+ <div class="col s9">
+<h3>Users</h3>
+
+<a class="waves-effect waves-light btn" href="<%= new_gallery_user_invite_path(current_gallery) %>"><i class="material-icons right">add</i>Invite a User</a>
+<br>
+<div class="input-field">
+<%= form_tag(gallery_users_path(current_gallery), method: "get") do %>
+    <i class="material-icons prefix">search</i>
+    <input type="search" id="search", class="validate", placeholder="Search by Username">
 <% end %>
+</div>
 <br>
 
 <% @users.each do |user| %>
@@ -28,3 +31,4 @@
     <% end %>
   </ul>
 <% end %>
+    </div>

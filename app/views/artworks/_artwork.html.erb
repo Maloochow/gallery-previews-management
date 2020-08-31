@@ -1,28 +1,36 @@
 <%= form_for([current_gallery, artwork]) do |f| %>
     <%= f.hidden_field :gallery_id, value: current_gallery.id  %>
-    <div>
+    <p>
     <%= f.label :title %>
-    <%= f.text_field :title, :required => true %></div>
-    <div>
+    <%= f.text_field :title, :required => true %></p>
+    <p>
     <%= f.label :artist %>
-    <%= f.text_field :artist, :required => true %></div>
-    <div>
+    <%= f.text_field :artist, :required => true %></p>
+    <p>
     <%= f.label :edition %>
-    <%= f.text_field :edition %></div>
-    <div>
+    <%= f.text_field :edition %></p>
+    <p>
     <%= f.label :year %>
-    <%= f.number_field :year %></div>
-    <div>
+    <%= f.number_field :year %></p>
+    <p>
     <%= f.label :medium %>
-    <%= f.text_field :medium %></div>
-    <div>
+    <%= f.text_field :medium %></p>
+    <p>
+    <label>
+    <%= f.check_box :availability %>
+    <span>Availability</span>
+    </label>
+    </p>
+    <p>
+    <label>
+    <%= f.check_box :commission %>
+    <span>Commission</span>
+    </label>
+    </p>
+    <p>
     <%= f.label :description %>
-    <%= f.text_area :description %></div>
-    <div>
-    <%= f.label :availability %>
-    <%= f.check_box :availability %></div>
-    <div>
-    <%= f.label :commission %>
-    <%= f.check_box :commission %></div>
-    <%= f.submit %>
+    <%= f.text_area :description %></p>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
 <% end %>

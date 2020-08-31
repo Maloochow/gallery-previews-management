@@ -1,1 +1,15 @@
-<%= render partial: 'nav' %>
+  <div class="row">
+<%= render partial: 'user' %>
+
+      <div class="col s9">
+      <% current_gallery.users.each do |user| %>
+      <ul class="collection with-header">
+        <li class="collection-header"><h5><%= user.username %>'s clients</h5></li>
+        <% user.gallery_clients.each do |client| %>
+        <li class="collection-item"><div><%= client.app_id %><a href="<%=gallery_client_path(current_gallery, client)%>" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+            

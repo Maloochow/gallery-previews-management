@@ -1,7 +1,7 @@
-<%= render partial: 'users/nav' %>
 
-<h1>Please Login</h1>
 
+<h3 class= "center">Log in</h3>
+<div class = "container">
 <%= form_for @user, url: login_path do |f| %>
     <div>
     <%= f.label :email %>
@@ -11,9 +11,24 @@
     <%= f.label :password %>
     <%= f.password_field :password %>
     </div>
-    <%= f.submit "Login"%>  
+    <br>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Login<i class="material-icons right">send</i>
+  </button> 
 <% end %>
+<br>
+<br>
+  <div class="divider"></div>
+<br>
+  <div class = "center">
+<p>Or Sign in with</p>
 
-<button><%= link_to 'Signing in with Google Account', "/auth/google_oauth2" %></button>
-
-<button><%= link_to 'Create Account with Email', signup_path %></button>
+<div class= "row">
+<div class="col s3 center"></div>
+<div class="col s3 center">
+<a href="/auth/google_oauth2"><img class="responsive-img" src="/Google_logo.png" alt="google login" width="42"> Google </a>
+</div>
+<div class="col s3 center">
+<a class="waves-effect waves-light btn" href="/signup">Email<i class="material-icons right">email</i></a>
+</div>
+<div class="col s3 center"></div>
+</div>

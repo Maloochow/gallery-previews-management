@@ -1,8 +1,14 @@
-<%= render partial: 'galleries/nav' %>
+
 
 <h3><%= @artwork.title %></h3>
-<%= edit_artwork(@artwork) %><br>
+<div class="row">
+<div class="col s1">
+<%= edit_artwork(@artwork) %>
+</div>
+<div class="col s1">
 <%= delete_artwork(@artwork) %>
+</div>
+</div>
 
 <table>
 <tbody>
@@ -24,11 +30,11 @@
     </tr>
     <tr>
     <th>Available:</th>
-        <th><%= @artwork.availability ? "yes" : "no" %></th>
+    <th><i class="material-icons"><%= @artwork.availability ? "check" : "clear"%></i></th>
     </tr>
     <tr>
     <th>Commissioned:</th>
-        <th><%= @artwork.commission ? "yes" : "no" %></th>
+    <th><i class="material-icons"><%= @artwork.commission ? "check" : "clear"%></i></th>
     </tr>
 
     <tr>

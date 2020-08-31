@@ -1,17 +1,25 @@
-<%= render partial: 'galleries/nav' %>
-
 <h3><%= link_to "Artworks", gallery_artworks_path(current_gallery) %></h3>
+
+<div class="row">
 <%= form_tag(gallery_artworks_path(current_gallery), method: "get") do %>
-  <%= text_field_tag :search, nil,  id: "Search" %>
-  <%= submit_tag "Search"%>
+ <div class="input-field col s6">
+    <i class="material-icons prefix">search</i>
+    <input type="search", name="search". id="search", class="validate", placeholder="Search by Artwork Title">
+</div>
+
+ <div class="col s6">
+  <label>Filter by Artist</label>
+  <select name="artist", class="browser-default", onchange="this.form.submit()">
+      <option value="" disabled selected>Choose the artist</option>
+      <% current_gallery.artists.each do |artist| %>
+        <option name="artist", value="<%=artist%>"><%=artist%></option>
+      <% end %>
+    </select>
 <% end %>
-<%= form_tag(gallery_artworks_path(current_gallery), method: "get") do %>
-  <%= label_tag :artist, "Filter by Artist" %>
-  <%= select_tag :artist, options_for_select(current_gallery.artworks.map {|artwork| artwork.artist }.uniq) %>
-  <%= submit_tag "Search"%>
-<% end %>
+</div>
+</div>
+<a class="waves-effect waves-light btn" href="<%= new_gallery_artwork_path(current_gallery) %>"><i class="material-icons right">add</i>Add Artwork</a>
 <br>
-<%= link_to "Add Artwork", new_gallery_artwork_path(current_gallery) %>
 <br>
 
 <%= render partial: 'artworks_table', locals: {artworks: @artworks} %>

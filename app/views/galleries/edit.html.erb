@@ -6,6 +6,14 @@
     <%= f.text_field :name %></div>
     <div>
     <%= f.label "Assign Admin User" %>
-    <%= f.select :admin_user_id, options_from_collection_for_select(@gallery.users, :id, :username) %></div>
-    <%= f.submit %>
+      <select name="gallery[admin_user_id]", class="browser-default">
+      <option value="" disabled selected>Choose the user</option>
+      <% current_gallery.users.each do |user| %>
+        <option name="gallery[admin_user_id]", value="<%=user.id%>"><%=user.username%></option>
+      <% end %>
+    </select>
+    <br>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
 <% end %>
