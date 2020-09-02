@@ -22,7 +22,6 @@ class UsersController < ApplicationController
             render :new
         elsif @user.save
             session[:user_id] = @user.id
-            binding.pry
         redirect_to user_path(@user)
         else
             flash[:alert] = "Email already exist, please login or use a different email"
@@ -74,6 +73,14 @@ class UsersController < ApplicationController
             flash[:alert] = "Operation is prohibited"
             redirect_to gallery_user_path(current_gallery, show_user)
         end
+    end
+
+    def top
+        @users = []
+        invites = ClientInvite.where(gallery: current_gallery)
+        user_ids = invites.group(:user_id).count.sort_by{|k, v| v}
+        @users << User.find_by_id(user_ids[0][0])
+        render :index
     end
 
 private

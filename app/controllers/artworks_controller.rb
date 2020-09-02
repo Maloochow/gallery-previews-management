@@ -3,9 +3,9 @@ class ArtworksController < ApplicationController
 
     def index
         artworks = Artwork.gallery_artworks(current_gallery)
-        if params[:search]
+        if params[:search] != ""
             @artworks = artworks.search(params[:search])
-        elsif params[:artist]
+        elsif params[:artist] != ""
             @artworks = artworks.where(artist: params[:artist])
         else
             @artworks = artworks

@@ -14,7 +14,7 @@
 
 
   <body>
-<% if current_gallery %>
+<% if current_gallery && current_gallery.id%>
 <%= render partial: 'galleries/nav' %>
 <% else %>
 <%= render partial: 'users/nav' %>

@@ -4,18 +4,18 @@
 <%= form_for @user, url: signup_path do |f| %>
     <div>
     <%= f.label :username %>
-    <%= f.text_field :username %><br>
+    <%= f.text_field :username, required: true %><br>
     </div>
     <div>
     <%= f.label :email %>
-    <%= f.email_field :email %><br>
+    <%= f.email_field :email, required: true %><br>
     </div>
     <div>
-    <%= f.label :password %>
+    <%= f.label :password, required: true %>
     <%= f.password_field :password %><br>
     </div>
     <div>
-    <%= f.label :password_confirmation %>
+    <%= f.label :password_confirmation, required: true %>
     <%= f.password_field :password_confirmation %>
     </div>
     <div class="file-field input-field">

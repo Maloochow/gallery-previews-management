@@ -57,11 +57,16 @@ class GalleriesController < ApplicationController
     end
 
     def gallery_authorized?
-        if show_on_gallery == current_user.gallery && show_on_gallery == current_gallery
-            true
+        if current_user && current_gallery
+            if show_on_gallery == current_user.gallery && show_on_gallery == current_gallery
+                true
+            else
+                session.clear
+                redirect_to login_path and return
+            end
         else
-            session.clear
-            redirect_to login_path and return
+            flash[:alert] = "Please login"
+            redirect_to login_path
         end
     end
 

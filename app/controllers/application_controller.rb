@@ -22,11 +22,16 @@ class ApplicationController < ActionController::Base
     end
 
     def authorized?
-        if show_gallery == current_user.gallery && show_gallery == current_gallery
-            true
+        if current_gallery && current_user
+            if show_gallery == current_user.gallery && show_gallery == current_gallery
+                true
+            else
+                session.clear
+                redirect_to login_path and return
+            end
         else
-            session.clear
-            redirect_to login_path and return
+            flash[:alert] = "Please login"
+            redirect_to login_path
         end
     end
 

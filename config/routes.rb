@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   post '/logout', to: 'sessions#destroy', as: 'logout'
 
+  get '/galleries/:id/top_user', to: 'users#top', as: 'gallery_top_user'
+
   resources :users, only: [:edit, :update, :destroy] do
     resources :galleries, only: :create
   end
